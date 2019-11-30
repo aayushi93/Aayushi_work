@@ -1,8 +1,8 @@
 # **Architecture Diagram and Design**
 
-![LCA Architecture](./assets/LCA Architecture.jpg)
+! [LCA Architecture](./assets/LCA Architecture.jpg)
 
-** Introduction **
+**Introduction**
 Cluster Monitor Agent is an internal tool that monitors the requests that monitors the cluster resources.
 
 ## _Linux Sql project structure and design__
@@ -19,16 +19,18 @@ Cluster Monitor Agent is an internal tool that monitors the requests that monito
 
 ## __USAGE__
 1. Executing DDL script which creates database and two tables - *host_info* and *host_usage*
-```psql -h localhost -U postgres -W -f ./linux_sql/sql/ddl.sql
-```
+`psql -h localhost -U postgres -W -f ./linux_sql/sql/ddl.sql`
 1. Execute *host_info.sh* to save the host related information with argument as mentioned below:
-```./scripts/host_info.sh psql_host psql_port db_name psql_user psql_password
+```
+ ./scripts/host_info.sh psql_host psql_port db_name psql_user psql_password
 ```
 1. *host_usage.sh*: 
-```./scripts/usage.sh psql_host psql_port db_name psql_user psql_password
+```
+./scripts/usage.sh psql_host psql_port db_name psql_user psql_password
 ```
 1. *crontab*: run *crontab -e*. Then add:
-```* * * * * bash /home/centos/dev/jarvis_data_eng_aayushi/linux_sql/scripts/host_usage.sh "localhost" 5432 "host_agent" "postgres" "postgres" > /tmp/host_usage.log
+```
+* * * * * bash /home/centos/dev/jarvis_data_eng_aayushi/linux_sql/scripts/host_usage.sh "localhost" 5432 "host_agent" "postgres" "postgres" > /tmp/host_usage.log
 ```
 save and exit.
 
