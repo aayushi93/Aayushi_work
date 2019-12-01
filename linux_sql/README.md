@@ -1,6 +1,6 @@
 # **Architecture Diagram and Design**
 
-**Introduction**
+## Introduction
 Cluster Monitor Agent is an internal tool that monitors the requests that monitors the cluster resources.
 
 ![LCA Architecture](./assets/Monitor_Agent_Architecture.png)
