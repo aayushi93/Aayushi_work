@@ -1,6 +1,7 @@
 
 ## Introduction
-Cluster Monitor Agent is an internal tool that monitors the requests that monitors the cluster resources.
+Cluster Monitor Agent is an internal tool that monitors the requests that monitors the cluster resources. It records hardware specifications of each node and monitor node resource usage like CPU/Memory in realtime. 
+The purpose of this tool is to assist the LCA team to adequately plan future resources by giving them required information stored in a database.
 
 ## Architecture Diagram and Design
 ![LCA Architecture](./assets/Monitor_Agent_Architecture.png)
@@ -9,11 +10,11 @@ Cluster Monitor Agent is an internal tool that monitors the requests that monito
 1. *Scripts*
 	* __host_info.sh__: Collects the host hardware info and insert it into the database. It will run only once at the installation time.
 	* __host_usage.sh__: Collects the current host usage (CPU and Memory) and then insert into the database. It will be triggered by the _crontab_ job every minute.
-	* __psq_docker.sh__
+	* __psq_docker.sh__: This script is usd to start and stop the psql database with docker.
 
 1. *SQL* 
-	* __ddl.sql__: Contains creation of tables.
-	* __queries.sql__: Conatins queries to manipulate data
+	* __ddl.sql__: Contains creation of tables - host_info.sh, host_usage.sh. Also creates database -host_agent that has above mentioned tables.
+	* __queries.sql__: Conatins queries that solve business problems that helps to fetch cpu_number, host_id and total memory. Second query fetches average memory usage over 5 minutes interval for each host.
 
 1. *README.md* : Contains high-level and detailed description os the project.
 
