@@ -6,13 +6,17 @@ import java.io.IOException;
 import java.util.List;
 
 public interface JavaGrep {
-    /** Top level search workflow
+    /**
+     * Top level search workflow
+     *
      * @throws IOException
      */
 
     void process() throws IOException;
 
-    /** Traverse a given directory and return all files.
+    /**
+     * Traverse a given directory and return all files.
+     *
      * @param rootDir input directory
      * @return files under the rootDir
      */
@@ -20,7 +24,7 @@ public interface JavaGrep {
 
     /**
      * Read a file and return all the lines
-     *
+     * <p>
      * Explain FileReader, BufferedReader, and character encoding
      *
      * @param inputFile file to be read
@@ -32,6 +36,7 @@ public interface JavaGrep {
 
     /**
      * Check if a line contains the regex pattern (passed by user)
+     *
      * @param line input string
      * @return true if there is a match
      */
@@ -39,7 +44,7 @@ public interface JavaGrep {
 
     /**
      * Write lines to a file
-     *
+     * <p>
      * Explore: FileOutputStream, OutputStreamWriter, and BufferedWriter
      *
      * @param lines matched line

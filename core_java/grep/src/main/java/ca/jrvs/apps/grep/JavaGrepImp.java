@@ -14,7 +14,7 @@ public class JavaGrepImp implements JavaGrep {
     private String outFile;
 
     public static void main(String[] args) {
-        if(args.length != 3) {
+        if (args.length != 3) {
             throw new IllegalArgumentException("USAGE: regex rootPath outFile");
         }
 
@@ -23,7 +23,7 @@ public class JavaGrepImp implements JavaGrep {
         javaGrepImp.setRootPath(args[1]);
         javaGrepImp.setOutFile(args[2]);
 
-        try{
+        try {
             javaGrepImp.process();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -34,9 +34,9 @@ public class JavaGrepImp implements JavaGrep {
     @Override
     public void process() throws IOException {
         List<String> file_list = new ArrayList<>();
-        for(File f: listFiles(getRootPath())){
-            for(String lines: readLines(f)){
-                if(containsPattern(lines)) {
+        for (File f : listFiles(getRootPath())) {
+            for (String lines : readLines(f)) {
+                if (containsPattern(lines)) {
                     file_list.add(lines);
                 }
 
@@ -57,12 +57,11 @@ public class JavaGrepImp implements JavaGrep {
             return null;
         }
 
-        for(File file : fileList) {
-            if(file.isDirectory()) {
+        for (File file : fileList) {
+            if (file.isDirectory()) {
                 List<File> saveFileDirectory = listFiles(file.getAbsolutePath());
                 newFileList.addAll(saveFileDirectory);
-            }
-            else {
+            } else {
                 newFileList.add(file);
             }
         }
