@@ -110,31 +110,33 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public String getRootPath() {
-        return null;
+        return rootPath;
     }
 
     @Override
     public void setRootPath(String rootPath) {
+        this.rootPath = rootPath;
 
     }
 
     @Override
     public String getRegex() {
-        return null;
+        return regex;
     }
 
     @Override
     public void setRegex(String regex) {
-
+        this.regex = regex;
     }
 
     @Override
     public String getOutFile() {
-        return null;
+        return outFile;
     }
 
     @Override
     public void setOutFile(String outFile) {
+        this.outFile = outFile;
 
     }
 }
