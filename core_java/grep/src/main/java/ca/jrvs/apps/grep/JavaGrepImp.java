@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class JavaGrepImp implements JavaGrep {
 
@@ -89,7 +90,7 @@ public class JavaGrepImp implements JavaGrep {
 
     @Override
     public boolean containsPattern(String line) {
-        return line.matches(regex);
+        return Pattern.compile(regex).matcher(line).find();
     }
 
     @Override
