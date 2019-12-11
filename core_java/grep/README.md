@@ -28,12 +28,13 @@ for file in listFilesRecursively(rootDir)
 
 
 Both of our implementations - JavaGrepImp and JavaGrepLambda uses JavaGrep function.
-We have implemented the above workflow in process method().
+
 Description of methods in the workfow:
-* _listFilesRecursively()_ - traverse the specified root directory recursively and generate list of files in the directory.
-* _readLines()_ - takes the 'file' and add all the generated lines to the file.
-* _containsPattern()_ - verifies if each line in the given file contains the regular expression specified by  argument.
-* _writeToFile()_ - If regex is matched, it writes those lines whose pattern is matched to a new output file specified by the user.
+* _listFilesRecursively()_ - `listFiles(String rootDir) { return fileList; }` ->  Traverse the specified root directory recursively and generate list of files in the directory. 
+* _readLines()_ - `readLines(File inputFile) { return File; }` -> Takes the 'file' and add all the generated lines to the file.
+* _containsPattern()_ - `containsPattern(String line) { return matchedLines; }` -> Verifies if each line in the given file contains the regular expression specified by  argument.
+* _writeToFile()_ - `writeToFile(List<String> lines) { return list of String; }` -> If regex is matched, it writes those lines whose pattern is matched to a new output file specified by the user.
+
 
 
 ## Performance Issue
