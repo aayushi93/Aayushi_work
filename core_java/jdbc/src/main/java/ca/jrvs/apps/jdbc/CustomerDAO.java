@@ -73,9 +73,10 @@ public class CustomerDAO extends DataAccessObject<Customer> {
             statement.execute();
             customer = this.findById(dto.getId());
         }catch (SQLException sqle) {
-            sqle.printStackTrace();
-            throw new RuntimeException(sqle);
-        }
+                sqle.printStackTrace();
+                throw new RuntimeException(sqle);
+            }
+
         return customer;
     }
 
