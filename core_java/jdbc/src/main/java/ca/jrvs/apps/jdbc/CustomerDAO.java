@@ -45,9 +45,8 @@ public class CustomerDAO extends DataAccessObject<Customer> {
                 customer.setZipCode(rs.getString("zipcode"));
 
             }
-        }catch (SQLException sqle) {
-            sqle.printStackTrace();
-            throw new RuntimeException(sqle);
+        }catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
         return customer;
     }
@@ -63,7 +62,6 @@ public class CustomerDAO extends DataAccessObject<Customer> {
         try{
             this.connection.setAutoCommit(false);
         }catch (SQLException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
         try(PreparedStatement statement = this.connection.prepareStatement(UPDATE);) {
@@ -79,15 +77,14 @@ public class CustomerDAO extends DataAccessObject<Customer> {
             statement.execute();
             this.connection.commit();
             customer = this.findById(dto.getId());
-        }catch (SQLException sqle) {
+        }catch (SQLException ex) {
             try{
                 this.connection.rollback();
             }catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
-                sqle.printStackTrace();
-                throw new RuntimeException(sqle);
+                throw new RuntimeException(ex);
             }
 
         return customer;
@@ -107,9 +104,8 @@ public class CustomerDAO extends DataAccessObject<Customer> {
             statement.execute();
             int id = this.getLastVal(CUSTOMER_SEQUENCE);
             return this.findById(id);
-        }catch(SQLException sqle) {
-            sqle.printStackTrace();
-            throw new RuntimeException(sqle);
+        }catch(SQLException ex) {
+            throw new RuntimeException(ex);
         }
 
     }
@@ -120,9 +116,8 @@ public class CustomerDAO extends DataAccessObject<Customer> {
             statement.setLong(1, id);
             statement.execute();
 
-        }catch (SQLException sqle) {
-            sqle.printStackTrace();
-            throw new RuntimeException();
+        }catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
 
     }

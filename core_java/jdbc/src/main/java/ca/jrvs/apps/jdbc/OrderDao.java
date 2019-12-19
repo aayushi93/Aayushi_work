@@ -60,7 +60,6 @@ class OrderDAO extends DataAccessObject<Order> {
             order.setOrderLines(orderLines);
 
         }catch (SQLException e){
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
         return order;
