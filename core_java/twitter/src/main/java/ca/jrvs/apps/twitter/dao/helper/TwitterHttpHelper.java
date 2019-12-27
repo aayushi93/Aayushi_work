@@ -1,7 +1,5 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
-import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthException;
@@ -10,15 +8,12 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 @Component
 public class TwitterHttpHelper implements HttpHelper {
@@ -45,6 +40,20 @@ public class TwitterHttpHelper implements HttpHelper {
         httpClient = HttpClientBuilder.create().build();
     }
 
+    //Default Constructor
+    public TwitterHttpHelper() {
+        String consumerKey = System.getenv("consumerKey");
+        String consumerSecret = System.getenv("consumerSecret");
+        String accessToken = System.getenv("accessToken");
+        String tokenSecret = System.getenv("tokenSecret");
+        consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
+        consumer.setTokenWithSecret(accessToken, tokenSecret);
+
+        /**Default = single connection
+         *
+         */
+        httpClient = HttpClientBuilder.create().build();
+    }
     /** Helper function to execute http request
      *
      * @param method
