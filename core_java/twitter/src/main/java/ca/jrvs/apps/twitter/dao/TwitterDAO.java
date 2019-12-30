@@ -5,8 +5,6 @@ import ca.jrvs.apps.twitter.model.Tweet;
 import com.google.gdata.util.common.base.PercentEscaper;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,7 +24,7 @@ public class TwitterDAO implements  CrdDao<Tweet, String> {
     private static final int HTTP_OK = 200;
     private HttpHelper httpHelper;
 
-    @Autowired
+
     public TwitterDAO(HttpHelper httpHelper) {
         this.httpHelper = httpHelper;
     }
