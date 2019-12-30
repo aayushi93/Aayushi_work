@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@Repository
 public class TwitterDAO implements  CrdDao<Tweet, String> {
     //URI constants
     private static final String API_BASE_URI = "https://api.twitter.com";

@@ -37,6 +37,20 @@ public class TwitterHttpHelper implements HttpHelper {
         httpClient = HttpClientBuilder.create().build();
     }
 
+    //Default Constructor
+    public TwitterHttpHelper() {
+        String consumerKey = System.getenv("consumerKey");
+        String consumerSecret = System.getenv("consumerSecret");
+        String accessToken = System.getenv("accessToken");
+        String tokenSecret = System.getenv("tokenSecret");
+        consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
+        consumer.setTokenWithSecret(accessToken, tokenSecret);
+
+        /**Default = single connection
+         *
+         */
+        httpClient = HttpClientBuilder.create().build();
+    }
     /** Helper function to execute http request
      *
      * @param method
