@@ -43,24 +43,24 @@ _TwitterCLIApp_ depends on _TwitterController_ depends on _TwitterService_ depen
 Tweet model is implemented with POJOs which is a class with private member variables and public getter and setters. This class encapsulates Tweet data which is often displayed in JSON format.
 _Sample Json output of Tweet model_ - 
 
-` 
+```json
 {
    "created_at":"Mon Feb 18 21:24:39 +0000 2019",
    "id":1097607853932564480,
    "id_str":"1097607853932564480",
    "text":"test with loc223",
    "entities":{
-      "hashtags":[],      //Find the object definition in twitter docs
-      "user_mentions":[]  //Find the object definition in twitter docs
-   },
-   "coordinates":null,    //Find the object definition in twitter docs
+	"hashtags":[],
+	"user_mentions":[]
+	},
+   "coordinates":null,
    "retweet_count":0,
    "favorite_count":0,
    "favorited":false,
    "retweeted":false
-} 
-`
-
+}
+```
+ 
 In this application, we use the same Tweet model as Data Transfer Model (or DTO) and Data access model (or domain model).
 
 To construct Tweet object, we implemented 5 classes - 
@@ -71,8 +71,8 @@ To construct Tweet object, we implemented 5 classes -
 * `UserMention.java`
 
 ## __Improvements__
-* Fetching tweets using user Twitter handle
+* Fetching tweets using user Twitter handle.
 * Functionality like  posting tweets including pictures, videos and GIFs in addition to text tweets, can be added.
-* Retweeting functionality, similar to web app and mobile app can be added
+* Retweeting functionality, similar to web app and mobile app can be added.
 * Viewing other users timeline using their twitter handle.
 
