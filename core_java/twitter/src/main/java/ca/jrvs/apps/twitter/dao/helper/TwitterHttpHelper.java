@@ -4,27 +4,29 @@ import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthException;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.http.HttpMethod;
+
 import java.io.IOException;
 import java.net.URI;
 
 public class TwitterHttpHelper implements HttpHelper {
 
     /**
-     *  Dependencies are set using private member variables
+     * Dependencies are set using private member variables
      */
     private OAuthConsumer consumer;
-    private HttpClient httpClient;
+    private CloseableHttpClient httpClient;
 
 
     /**
      * Constructor
      * Setup dependecies using Twitter secrets
+     *
      * @param consumerKey
      * @param consumerSecret
      * @param accessToken
@@ -37,7 +39,6 @@ public class TwitterHttpHelper implements HttpHelper {
         httpClient = HttpClientBuilder.create().build();
     }
 
-    //Default Constructor
     public TwitterHttpHelper() {
         String consumerKey = System.getenv("consumerKey");
         String consumerSecret = System.getenv("consumerSecret");
@@ -46,12 +47,14 @@ public class TwitterHttpHelper implements HttpHelper {
         consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
         consumer.setTokenWithSecret(accessToken, tokenSecret);
 
-        /**Default = single connection
-         *
+        /**
+         * Default = single connection
          */
         httpClient = HttpClientBuilder.create().build();
     }
-    /** Helper function to execute http request
+
+    /**
+     * Helper function to execute http request
      *
      * @param method
      * @param uri
@@ -60,41 +63,55 @@ public class TwitterHttpHelper implements HttpHelper {
      * @throws IOException
      * @throws OAuthException
      */
-    private HttpResponse executeHttpRequest(HttpMethod method, URI uri, StringEntity strEnt) throws IOException, OAuthException{
-        if(method == HttpMethod.GET) {
+    private HttpResponse executeHttpRequest(HttpMethod method, URI uri, StringEntity strEnt) throws IOException, OAuthException {
+        if (method == HttpMethod.GET) {
             HttpGet request = new HttpGet(uri);
             consumer.sign(request);
             return httpClient.execute(request);
         } else if (method == HttpMethod.POST) {
             HttpPost request = new HttpPost(uri);
-            if(strEnt != null) {
+            if (strEnt != null) {
                 request.setEntity(strEnt);
             }
             consumer.sign(request);
             return httpClient.execute(request);
         } else {
-            throw  new RuntimeException("Invalid HTTP method: " + method.name());
+            throw new RuntimeException("Invalid HTTP method: " + method.name());
         }
     }
+
+    /**
+     * Implement httpPost
+     *
+     * @param uri
+     * @return
+     */
 
     @Override
     public HttpResponse httpPost(URI uri) {
-        try{
+        try {
             return executeHttpRequest(HttpMethod.POST, uri, null);
-        }catch (OAuthException | IOException e) {
+        } catch (OAuthException | IOException e) {
             throw new RuntimeException("Execution failed", e);
         }
 
     }
+
+    /**
+     * Implement httpGet
+     *
+     * @param uri
+     * @return
+     */
 
     @Override
     public HttpResponse httpGet(URI uri) {
-        try{
+        try {
             return executeHttpRequest(HttpMethod.GET, uri, null);
-        }catch (OAuthException |IOException e) {
+        } catch (OAuthException | IOException e) {
             throw new RuntimeException("Execution failed", e);
         }
 
     }
-    }
+}
 
