@@ -41,17 +41,17 @@ public class TwitterCLIApp {
     }
 
     public void run(String[] args) {
-        if(args.length == 0) {
+        if (args.length == 0) {
             throw new IllegalArgumentException(USAGE);
         }
         switch (args[0].toLowerCase()) {
-            case "post" :
+            case "post":
                 printTweet(controller.postTweet(args));
                 break;
-            case "show" :
+            case "show":
                 printTweet(controller.showTweet(args));
                 break;
-            case "delete" :
+            case "delete":
                 controller.deleteTweet(args).forEach(this::printTweet);
                 break;
             default:
@@ -60,9 +60,9 @@ public class TwitterCLIApp {
     }
 
     private void printTweet(Tweet tweet) {
-        try{
+        try {
             System.out.println(JsonUtil.toPrettyJson(tweet));
-        }catch (JsonProcessingException ex) {
+        } catch (JsonProcessingException ex) {
             throw new RuntimeException("Failed to convert tweet object to String", ex);
         }
     }
