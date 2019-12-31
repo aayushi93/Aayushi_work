@@ -9,19 +9,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CustomerDAO extends DataAccessObject<Customer> {
-    //Creating data
     private static final String INSERT = "INSERT INTO customer (first_name, last_name," +
             "email, phone, address, city, state, zipcode) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    //Reading data
     private static final String GET_ONE = "SELECT customer_id, first_name, last_name, email, phone, address, " +
             "city, state, zipcode FROM customer WHERE customer_id = ?";
 
-    //Updating data
     private static final String UPDATE = "Update customer SET first_name = ?, last_name = ?, email = ?, " +
             "phone = ?, address = ?, city = ?, state = ?, zipcode = ? WHERE customer_id = ?";
 
-    //Deleting data
     private static String DELETE = "DELETE FROM customer WHERE customer_id = ?";
 
     public CustomerDAO(Connection connection) {
