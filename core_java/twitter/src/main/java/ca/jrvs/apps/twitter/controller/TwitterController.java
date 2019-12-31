@@ -3,6 +3,8 @@ package ca.jrvs.apps.twitter.controller;
 import ca.jrvs.apps.twitter.Util.TweetUtil;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.service.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
@@ -14,6 +16,7 @@ public class TwitterController implements Controller {
     private static final String SEP = ",";
 
     private Service service;
+    private Logger logger = LoggerFactory.getLogger(TwitterController.class);
 
     @Autowired
     public TwitterController(Service service) {
@@ -46,7 +49,8 @@ public class TwitterController implements Controller {
             longitude = Double.parseDouble(coordArray[0]);
             latitude = Double.parseDouble(coordArray[1]);
         } catch (Exception e) {
-            throw new IllegalArgumentException("Invalid location format\nUSAGE: TwitterCLIApp post \"tweet_text\" \"latitude:longitude\"", e);
+            logger.error("Invalid location format\nUSAGE: TwitterCLIApp post \"tweet_text\" \"latitude:longitude\"");
+            throw new IllegalArgumentException(e.getMessage());
         }
         Tweet postTweetText = TweetUtil.buildTweet(tweetText, longitude, latitude);
         return service.postTweet(postTweetText);
