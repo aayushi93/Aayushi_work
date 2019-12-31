@@ -5,6 +5,8 @@ import ca.jrvs.apps.twitter.model.Tweet;
 import com.google.gdata.util.common.base.PercentEscaper;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -24,6 +26,7 @@ public class TwitterDAO implements CrdDao<Tweet, String> {
 
     private static final int HTTP_OK = 200;
     private HttpHelper httpHelper;
+    private Logger logger = LoggerFactory.getLogger(TwitterDAO.class);
 
 
     public TwitterDAO(HttpHelper httpHelper) {
@@ -42,7 +45,8 @@ public class TwitterDAO implements CrdDao<Tweet, String> {
         try {
             uri = getPostUri(tweet);
         } catch (URISyntaxException e) {
-            throw new IllegalArgumentException("Illegal tweet input", e);
+            logger.error("Illegal tweet input");
+            throw new IllegalArgumentException(e.getMessage());
         }
         HttpResponse response = httpHelper.httpPost(uri);
 
@@ -72,7 +76,8 @@ public class TwitterDAO implements CrdDao<Tweet, String> {
         try {
             uri = getShowById(id);
         } catch (URISyntaxException e) {
-            throw new IllegalArgumentException("Invalid tweet ID", e);
+            logger.error("Invalid tweet ID");
+            throw new IllegalArgumentException(e.getMessage());
         }
 
         HttpResponse response = httpHelper.httpGet(uri);
@@ -116,7 +121,7 @@ public class TwitterDAO implements CrdDao<Tweet, String> {
             try {
                 System.out.println(EntityUtils.toString(response.getEntity()));
             } catch (IOException e) {
-                System.out.println("Response has no entity");
+                logger.error("Response has no entity");
             }
             throw new RuntimeException("Unexpected HTTP status: " + status);
         }
@@ -130,8 +135,9 @@ public class TwitterDAO implements CrdDao<Tweet, String> {
         String jsonString;
         try {
             jsonString = EntityUtils.toString(response.getEntity());
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to convert from entity to String", e);
+        } catch (IOException ex) {
+            logger.error("Failed to convert from entity to string.");
+            throw new RuntimeException(ex.getMessage());
         }
 
         return tweet;
