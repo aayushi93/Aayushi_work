@@ -76,7 +76,7 @@ public class TwitterHttpHelper implements HttpHelper {
             consumer.sign(request);
             return httpClient.execute(request);
         } else {
-            throw new RuntimeException("Invalid HTTP method: " + method.name());
+            throw new IllegalArgumentException("Invalid HTTP method: " + method.name());
         }
     }
 
@@ -92,7 +92,7 @@ public class TwitterHttpHelper implements HttpHelper {
         try {
             return executeHttpRequest(HttpMethod.POST, uri, null);
         } catch (OAuthException | IOException e) {
-            throw new RuntimeException("Execution failed", e);
+            throw new IllegalArgumentException("Execution failed", e);
         }
 
     }
