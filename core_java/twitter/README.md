@@ -1,5 +1,8 @@
 # __TwitterCLI Application__
 
+TwitterCLI application allows us to post, show and delete Twitter post using Twitter Rest API unlike common Twitter web or mobile application. 
+Implementation of this app introduced me to concepts like DTO and DAO design patterns, Java library to process JSON files, testing frameworks like Junit and Mockito, maven dependencies and MVC(Model, View, Controller) architecture.
+
 ## __Design__
 
 ### __UML Diagram__
