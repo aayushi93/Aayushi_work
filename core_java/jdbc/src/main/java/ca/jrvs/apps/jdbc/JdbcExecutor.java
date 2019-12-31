@@ -9,7 +9,7 @@ public class JdbcExecutor {
         DatabaseConnectionManager dcm = new DatabaseConnectionManager("localhost", "hplussport",
                 "postgres", "password");
 
-        try{
+        try {
             Connection connection = dcm.getConnection();
             OrderDAO orderDAO = new OrderDAO(connection);
             Order order = orderDAO.findById(1000);

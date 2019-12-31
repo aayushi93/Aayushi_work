@@ -15,7 +15,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
 
     //Reading data
     private static final String GET_ONE = "SELECT customer_id, first_name, last_name, email, phone, address, " +
-        "city, state, zipcode FROM customer WHERE customer_id = ?";
+            "city, state, zipcode FROM customer WHERE customer_id = ?";
 
     //Updating data
     private static final String UPDATE = "Update customer SET first_name = ?, last_name = ?, email = ?, " +
@@ -31,10 +31,10 @@ public class CustomerDAO extends DataAccessObject<Customer> {
     @Override
     public Customer findById(long id) {
         Customer customer = new Customer();
-        try(PreparedStatement statement = this.connection.prepareStatement(GET_ONE);){
-            statement.setLong(1,id);
+        try (PreparedStatement statement = this.connection.prepareStatement(GET_ONE);) {
+            statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 customer.setId(rs.getLong("customer_id"));
                 customer.setFirstName(rs.getString("first_name"));
                 customer.setLastName(rs.getString("last_name"));
@@ -45,7 +45,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
                 customer.setZipCode(rs.getString("zipcode"));
 
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
         return customer;
@@ -59,12 +59,12 @@ public class CustomerDAO extends DataAccessObject<Customer> {
     @Override
     public Customer update(Customer dto) {
         Customer customer = null;
-        try{
+        try {
             this.connection.setAutoCommit(false);
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        try(PreparedStatement statement = this.connection.prepareStatement(UPDATE);) {
+        try (PreparedStatement statement = this.connection.prepareStatement(UPDATE);) {
             statement.setString(1, dto.getFirstName());
             statement.setString(2, dto.getLastName());
             statement.setString(3, dto.getEmail());
@@ -77,22 +77,22 @@ public class CustomerDAO extends DataAccessObject<Customer> {
             statement.execute();
             this.connection.commit();
             customer = this.findById(dto.getId());
-        }catch (SQLException ex) {
-            try{
+        } catch (SQLException ex) {
+            try {
                 this.connection.rollback();
-            }catch (SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
-                throw new RuntimeException(ex);
-            }
+            throw new RuntimeException(ex);
+        }
 
         return customer;
     }
 
     @Override
     public Customer create(Customer dto) {
-        try(PreparedStatement statement = this.connection.prepareStatement(INSERT);) {
+        try (PreparedStatement statement = this.connection.prepareStatement(INSERT);) {
             statement.setString(1, dto.getFirstName());
             statement.setString(2, dto.getLastName());
             statement.setString(3, dto.getEmail());
@@ -104,7 +104,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
             statement.execute();
             int id = this.getLastVal(CUSTOMER_SEQUENCE);
             return this.findById(id);
-        }catch(SQLException ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
 
@@ -112,11 +112,11 @@ public class CustomerDAO extends DataAccessObject<Customer> {
 
     @Override
     public void delete(long id) {
-        try(PreparedStatement statement = this.connection.prepareStatement(INSERT);) {
+        try (PreparedStatement statement = this.connection.prepareStatement(INSERT);) {
             statement.setLong(1, id);
             statement.execute();
 
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
 
