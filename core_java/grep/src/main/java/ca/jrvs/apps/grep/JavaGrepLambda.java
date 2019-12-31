@@ -1,4 +1,5 @@
 package ca.jrvs.apps.grep;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,8 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.function.Supplier;
+
 public class JavaGrepLambda extends JavaGrepImp {
     public static void main(String[] args) {
         JavaGrepLambda javaGrepLambda = new JavaGrepLambda();
@@ -23,18 +23,20 @@ public class JavaGrepLambda extends JavaGrepImp {
             e.printStackTrace();
         }
     }
+
     public List<File> listFiles(String rootDir) {
         List<File> list_files = new ArrayList<>();
         try {
             list_files = Files.walk(Paths.get(rootDir))
                     .filter(f -> Files.isRegularFile(f))
-                    .map(Path :: toFile)
+                    .map(Path::toFile)
                     .collect(Collectors.toList());
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return list_files;
     }
+
     public List<String> readLines(File inputFile) {
         List<String> linesRead = new ArrayList<>();
         try {
