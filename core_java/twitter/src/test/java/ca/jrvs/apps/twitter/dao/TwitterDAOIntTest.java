@@ -22,7 +22,7 @@ public class TwitterDAOIntTest {
         String consumerSecret = System.getenv("consumerSecret");
         String accessToken = System.getenv("accessToken");
         String tokenSecret = System.getenv("tokenSecret");
-        System.out.println(consumerKey + " | "  + consumerSecret + " | " + accessToken + " | " + tokenSecret);
+        System.out.println(consumerKey + " | " + consumerSecret + " | " + accessToken + " | " + tokenSecret);
         //setup dependency
         HttpHelper httpHelper = new TwitterHttpHelper(consumerKey, consumerSecret, accessToken, tokenSecret);
         //pass dependency
@@ -32,7 +32,7 @@ public class TwitterDAOIntTest {
         String text = "Happy holidays 2019!!" + " " + hashTag + " " + System.currentTimeMillis();
         Double latitude = 43.7;
         Double longitude = 79.3;
-        Tweet postTweet = TweetUtil.buildTweet(text,longitude, latitude);
+        Tweet postTweet = TweetUtil.buildTweet(text, longitude, latitude);
         System.out.println(JsonUtil.toPrettyJson(postTweet));
 
         Tweet tweet = dao.create(postTweet);
@@ -69,7 +69,6 @@ public class TwitterDAOIntTest {
         assertEquals(post.getCoordinates().getCoordinatesTweet().get(0), tweet.getCoordinates().getCoordinatesTweet().get(0));
         assertEquals(post.getCoordinates().getCoordinatesTweet().get(1), tweet.getCoordinates().getCoordinatesTweet().get(1));
     }
-
 
 
 }

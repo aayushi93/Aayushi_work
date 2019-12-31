@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -32,9 +33,9 @@ public class TwitterDaoUnitTest {
         Double latitude = 43.7;
         Double longitude = 79.3;
         when(httpHelperMock.httpPost(isNotNull())).thenThrow(new RuntimeException("mock"));
-        try{
+        try {
             dao.create(TweetUtil.buildTweet(text, latitude, longitude));
-        }catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             assertTrue(true);
         }
 
@@ -66,15 +67,15 @@ public class TwitterDaoUnitTest {
     }
 
     @Test
-    public void findTweet() throws Exception{
+    public void findTweet() throws Exception {
         String hashTag = "#holidayseason";
         String text = "Happy holidays 2019!!" + " " + hashTag + " " + System.currentTimeMillis();
         Double latitude = 43.7;
         Double longitude = 79.3;
         when(httpHelperMock.httpGet(isNotNull())).thenThrow(new RuntimeException("mock"));
-        try{
+        try {
             dao.findById("123456789101112");
-        }catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             assertTrue(true);
         }
 
@@ -105,15 +106,15 @@ public class TwitterDaoUnitTest {
     }
 
     @Test
-    public void deleteTweet() throws Exception{
+    public void deleteTweet() throws Exception {
         String hashTag = "#holidayseason";
         String text = "Happy holidays 2019!!" + " " + hashTag + " " + System.currentTimeMillis();
         Double latitude = 43.7;
         Double longitude = 79.3;
         when(httpHelperMock.httpPost(isNotNull())).thenThrow(new RuntimeException("mock"));
-        try{
+        try {
             dao.deleteById("123456789101112");
-        }catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             assertTrue(true);
         }
 
@@ -145,10 +146,7 @@ public class TwitterDaoUnitTest {
     }
 
 
-
-
-
-    }
+}
 
 
 
