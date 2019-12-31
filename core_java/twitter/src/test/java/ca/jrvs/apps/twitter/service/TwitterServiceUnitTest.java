@@ -46,9 +46,9 @@ public class TwitterServiceUnitTest {
     @Test
     public void deleteTweets() {
         when(dao.create(any())).thenReturn(new Tweet());
-        String[] idArray= {"9876543211012131", "0123456789101112131"};
+        String[] idArray = {"9876543211012131", "0123456789101112131"};
         List<Tweet> tweetDelete = twitterService.deleteTweets(idArray);
-        for(Tweet obj: tweetDelete) {
+        for (Tweet obj : tweetDelete) {
             assertEquals(obj.getText(), null);
             assertEquals(obj.getIdStr(), null);
             assertEquals(obj.getCoordinates(), null);
@@ -56,11 +56,7 @@ public class TwitterServiceUnitTest {
         }
 
 
-
     }
-
-
-
 
 
 }
