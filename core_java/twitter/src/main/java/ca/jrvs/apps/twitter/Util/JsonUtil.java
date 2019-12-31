@@ -12,7 +12,8 @@ public class JsonUtil {
 
     /**
      * Convert a java object to JSON string
-     * @param object input object
+     *
+     * @param object            input object
      * @param prettyJson
      * @param includeNullValues
      * @return JSON String
@@ -20,7 +21,7 @@ public class JsonUtil {
      */
     public static String toJson(Object object, boolean prettyJson, boolean includeNullValues)
             throws JsonProcessingException {
-        ObjectMapper m =new ObjectMapper();
+        ObjectMapper m = new ObjectMapper();
         if (!includeNullValues) {
             m.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         }
@@ -32,10 +33,11 @@ public class JsonUtil {
 
     /**
      * Convert a Java object to pretty Json string
+     *
      * @param object
      * @return
      */
-    public static String toPrettyJson (Object object) throws JsonProcessingException{
+    public static String toPrettyJson(Object object) throws JsonProcessingException {
         try {
             return toJson(object, true, false);
         } catch (JsonProcessingException e) {
@@ -45,15 +47,16 @@ public class JsonUtil {
 
     /**
      * Parse JSON string to a object
-     * @param json JSON str
+     *
+     * @param json  JSON str
      * @param clazz object class
-     * @param <T> type
+     * @param <T>   type
      * @return object
      * @throws IOException
      */
-    public static <T> T toObjectFromJson (String json, Class clazz) throws IOException {
+    public static <T> T toObjectFromJson(String json, Class clazz) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return (T) objectMapper.readValue(json,clazz);
+        return (T) objectMapper.readValue(json, clazz);
     }
 }
