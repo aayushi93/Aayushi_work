@@ -78,7 +78,7 @@ public class TwitterService implements Service {
 
     private void validatePostTweetText(Tweet tweet) {
         if (tweet.getText().length() > 140) {
-            throw new RuntimeException("Tweet length exceeded max number of allowed characters. Please use shorter text");
+            throw new IllegalArgumentException("Tweet length exceeded max number of allowed characters. Please use shorter text");
         }
 
     }
@@ -89,20 +89,20 @@ public class TwitterService implements Service {
                 tweet.getCoordinates().getCoordinatesTweet().get(0) < -180 ||
                 tweet.getCoordinates().getCoordinatesTweet().get(1) > 90 ||
                 tweet.getCoordinates().getCoordinatesTweet().get(1) < -90) {
-            throw new RuntimeException("Longitude and Latitude out of range. Valid longitude range - -180 to +180 " +
+            throw new IllegalArgumentException("Longitude and Latitude out of range. Valid longitude range - -180 to +180 " +
                     "and latitude range - -90 to 90");
         }
     }
 
     private void validateFields(String fields) {
         if (!Arrays.asList(validFields).contains(fields)) {
-            throw new RuntimeException("Invalid field parameters. Valid fields: " + validFields);
+            throw new IllegalArgumentException("Invalid field parameters. Valid fields: " + validFields);
         }
     }
 
     private void validateTweetId(String id) {
         if (!id.matches("[0-9]+")) {
-            throw new RuntimeException("Invalid tweet id");
+            throw new IllegalArgumentException("Invalid tweet id");
         }
     }
 }
