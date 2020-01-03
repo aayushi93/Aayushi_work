@@ -71,8 +71,8 @@ public class JavaGrepImp implements JavaGrep {
                 l = brd.readLine();
             }
             brd.close();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return numLines;
     }
@@ -92,8 +92,8 @@ public class JavaGrepImp implements JavaGrep {
             }
             bwr.close();
             System.out.println("File writing done");
-        } catch (IOException iox) {
-            iox.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
