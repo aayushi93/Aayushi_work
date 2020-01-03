@@ -19,9 +19,7 @@ public class TweetUtil {
     public static Tweet buildTweet(String text, Double lon, Double lat) {
 
         Tweet tweet = new Tweet();
-        //set the text
         tweet.setText(text);
-        //set coordinates
         Coordinates coordinates = new Coordinates();
         List<Double> list = new ArrayList<>();
         list.add(lon);
