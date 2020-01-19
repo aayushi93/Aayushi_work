@@ -33,7 +33,7 @@ public class QuoteController {
     @PutMapping(path = "iex/MarketData")
     @ResponseStatus(HttpStatus.OK)
     public void updateMarketData() {
-        try{
+        try {
             quoteService.updateMarketData();
         } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
