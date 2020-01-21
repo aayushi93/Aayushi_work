@@ -54,8 +54,9 @@ public class QuoteService {
      * @throws if                                          ticker is not found from IEX
      * @throws org.springframework.dao.DataAccessException if unable to retrieve data
      * @throws IllegalArgumentException                    for invalid input
+     * @return
      */
-    public void updateMarketData() {
+    public List<Quote> updateMarketData() {
         List<Quote> quotes = quoteDao.findAll();
 
         List<Quote> allQuotes = new ArrayList<>();
@@ -70,6 +71,7 @@ public class QuoteService {
         quoteDao.saveAll(allQuotes);
 
 
+        return quotes;
     }
 
     public List<Quote> saveQuotes(List<String> tickers) {
@@ -93,7 +95,7 @@ public class QuoteService {
         return saveQuote(quote);
     }
 
-    private Quote saveQuote(Quote quote) {
+    public Quote saveQuote(Quote quote) {
         return quoteDao.save(quote);
     }
 
