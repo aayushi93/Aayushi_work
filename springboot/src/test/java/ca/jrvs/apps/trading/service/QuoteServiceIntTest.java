@@ -27,7 +27,7 @@ public class QuoteServiceIntTest {
 
     @Autowired
     private QuoteDao quoteDao;
-//    private Quote savedQuote;
+    private Quote savedQuote;
 
     @Before
     public void setup() throws Exception {
@@ -35,7 +35,6 @@ public class QuoteServiceIntTest {
 
         Quote quote1 = new Quote();
         Quote quote2 = new Quote();
-//        Quote quote3 = new Quote();
 
 
         quote1.setId("AAPL");
@@ -79,12 +78,12 @@ public class QuoteServiceIntTest {
 
     }
 
-//    @Test
-//    public void saveQuote() {
-//        quoteService.saveQuote(savedQuote);
-//        assertEquals(2, quoteDao.count());
-//
-//    }
+    @Test
+    public void saveQuote() {
+        quoteService.saveQuote(savedQuote);
+        assertEquals(2, quoteDao.count());
+
+    }
 
     @Test
     public void findAllQuotes() {
