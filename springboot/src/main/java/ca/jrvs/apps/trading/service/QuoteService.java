@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class QuoteService {
     private static final Logger logger = LoggerFactory.getLogger(QuoteService.class);
-    
+
     private MarketDataDao marketDataDao;
     private QuoteDao quoteDao;
 
