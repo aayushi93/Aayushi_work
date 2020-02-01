@@ -111,8 +111,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         try {
             quoteString = executeHttpGet(url);
         } catch (Exception e) {
-            logger.error("Invalid url");
-            throw new DataRetrievalFailureException(e.getMessage());
+            throw new DataRetrievalFailureException("Invalid URL" + e.getMessage());
         }
         JSONObject jsonObject = new JSONObject(quoteString.get());
         ObjectMapper mapper = new ObjectMapper();
@@ -122,8 +121,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
             try {
                 quote = mapper.readValue(stringQuote, IexQuote.class);
             } catch (IOException ex) {
-                logger.error("Failed to convert JSON to quote object");
-                throw new JSONException(ex.getMessage());
+                throw new JSONException("Failed to convert JSON to quote object" + ex.getMessage());
             }
             quotes.add(quote);
         }
@@ -147,8 +145,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         try {
             httpResponse = httpClient.execute(httpRequest);
         } catch (IOException e) {
-            logger.error("Invalid URL");
-            throw new MalformedURLException(e.getMessage());
+            throw new MalformedURLException("Invalid URL" + e.getMessage());
         }
         int status = httpResponse.getStatusLine().getStatusCode();
         if (status != HTTP_OK) {
@@ -162,8 +159,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
             HttpEntity httpEntity = httpResponse.getEntity();
             jsonString = EntityUtils.toString(httpEntity);
         } catch (IOException ex) {
-            logger.error("Conversion from entity to string failed");
-            throw new IllegalArgumentException(ex.getMessage());
+            throw new IllegalArgumentException("Conversion from entity to string failed" + ex.getMessage());
         }
         Optional<String> response = Optional.of(jsonString);
         return response;
