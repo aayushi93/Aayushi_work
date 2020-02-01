@@ -17,14 +17,12 @@ import java.util.List;
 @Service
 public class QuoteService {
     private static final Logger logger = LoggerFactory.getLogger(QuoteService.class);
-
-    //    private IexQuote iexQuote;
+    
     private MarketDataDao marketDataDao;
     private QuoteDao quoteDao;
 
     @Autowired
     public QuoteService(MarketDataDao marketDataDao, QuoteDao quoteDao) {
-//        this.iexQuote = iexQuote;
         this.marketDataDao = marketDataDao;
         this.quoteDao = quoteDao;
     }
