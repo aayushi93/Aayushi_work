@@ -1,4 +1,7 @@
-# Table of contents
+# Trading Application 
+
+
+## Table of contents
 * [Introduction](#introduction)
 * [Quick Start](#quick-start)
 * [Architecture](#architecture)
