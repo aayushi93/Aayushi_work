@@ -3,7 +3,7 @@
 * [Quick Start](#quick-start)
 * [Architecture](#architecture)
 * [Rest API Usage](#rest-API-usage)
-* [Docker Deployment](#docker-deploy)
+* [Docker Deployment](#docker-deployment)
 * [Improvements](#improvements)
 
 
