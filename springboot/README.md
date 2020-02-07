@@ -1,10 +1,10 @@
 # Table of contents
--[Introduction] (#Introduction)
--[Quick Start] (#Quick Start)
--[Architecture] (#Architecture)
--[Rest API Usage] (#Rest API Usage)
--[Docker Deploy] (#Docker Deploy)
--[Improvements] (#Improvements)
+[Introduction] (#Introduction)
+[Quick Start] (#Quick Start)
+[Architecture] (#Architecture)
+[Rest API Usage] (#Rest API Usage)
+[Docker Deploy] (#Docker Deploy)
+[Improvements] (#Improvements)
 
 
 ## Introduction
@@ -15,7 +15,7 @@ Trading app is an online stock trading simulation on REST API which is built usi
 Prerequisites for deployment -
 1. Machine or VM – Cento7 or higher
 1. Docker version – 17.05 or higher
-1. Java8
+1. Java 8
 1. Maven to build and package the application
 1. API Token – IEX Cloud account 
 
@@ -76,7 +76,7 @@ Prerequisites for deployment -
 ## Architecture
 Component diagram:
 
-![SpringBoot](./Assets/SpringBoot Architecture.png)
+![SpringBoot](./Assets/SpringBoot_Architecture.png)
 
 
 ***DAO Layer*** – Responsible for data exchange with database and IEX cloud. This layer is in the application tier that has Controller, service and DAO layers.
@@ -120,6 +120,7 @@ There are two endpoints that can create a new trader. The first will allow you t
 
 ## Docker Deployment
 Working of Docker deployment: 
+
 ![Docker](./Assets/Docker.png)
 
 Docker manages application deployment.
@@ -131,7 +132,7 @@ Information on how to build the app using maven is stored in app dockerfile.
 At last, two containers are created for trading-psql and trading-app images and are connected to trading-net network so communication can be established between the two.
 
 
-##Improvements
+## Improvements
 1. Traders might have multiple accounts registered under same traderId but different accountId.
 1. Authenticating traders to avoid necessary losses. 
 1. Alerting the user about market gap and price difference during that time when a user places an order after market is closed.
