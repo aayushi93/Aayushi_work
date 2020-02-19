@@ -33,10 +33,6 @@ public class DashBoardService {
         this.positionDao = positionDao;
     }
 
-    /**
-     * @param traderId
-     * @throws IllegalArgumentException if trader Id not found.
-     */
     private Account findAccountByTraderId(Integer traderId) {
         List<Account> accounts = accountDao.findRowByColumnId(traderId, "traderId");
         if (accounts.size() == 0) {
