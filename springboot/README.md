@@ -79,7 +79,7 @@ Prerequisites for deployment -
 ## Architecture
 Component diagram:
 
-![SpringBoot](./Assets/SpringBoot_Architecture.png)
+![SpringBoot](./Assets/MVC.png)
 
 
 ***DAO Layer*** – Responsible for data exchange with database and IEX cloud. This layer is in the application tier that has Controller, service and DAO layers.
@@ -124,7 +124,7 @@ There are two endpoints that can create a new trader. The first will allow you t
 ## Docker Deployment
 Working of Docker deployment: 
 
-![Docker](./Assets/Docker.png)
+![Docker](./Assets/DockerDeployment.png)
 
 Docker manages application deployment.
 Docker daemon builds docker images  Two images are built in this case using docker build.
