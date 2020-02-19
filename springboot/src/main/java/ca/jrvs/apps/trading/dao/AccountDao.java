@@ -55,7 +55,9 @@ public class AccountDao extends JdbcCrudDao<Account> {
     }
 
 
-    /**
+    /** Update amount in the account
+     * - negative amount indicates withdrawal
+     * - positive amount indicates deposit
      * @param account 
      * @param amount
      * @return
@@ -64,7 +66,7 @@ public class AccountDao extends JdbcCrudDao<Account> {
         Double bal = account.getAmount();
         Double newBal = bal + amount;
         if(newBal < 0 ) {
-            throw new IllegalArgumentException("Insufficcient Balance!!");
+            throw new IllegalArgumentException("Insufficient Balance!!");
         }
         account.setAmount(newBal);
         return save(account);
