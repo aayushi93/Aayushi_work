@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -26,6 +27,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class MarketDataDao implements CrudRepository<IexQuote, String> {
     private static final String IEX_BATCH_PATH = "stock/market/batch?symbols=%s&types=quote&token=";
     private static final int HTTP_OK = 200;
