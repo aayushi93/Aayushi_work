@@ -18,19 +18,6 @@ import javax.sql.DataSource;
 public class AppConfig {
     private Logger logger = LoggerFactory.getLogger(AppConfig.class);
 
-
-    @Bean
-    public QuoteService serviceQuote(MarketDataDao marketDataDao) {
-        return new QuoteService(marketDataDao);
-    }
-
-    @Bean
-    public MarketDataDao marketData(HttpClientConnectionManager httpClientConnectionManager,
-                                    MarketDataConfig marketDataConfig) {
-        return new MarketDataDao(httpClientConnectionManager, marketDataConfig);
-
-    }
-
     @Bean
     public MarketDataConfig marketDataConfig() {
         MarketDataConfig marketDataConfig = new MarketDataConfig();
