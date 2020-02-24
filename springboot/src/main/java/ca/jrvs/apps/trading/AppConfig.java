@@ -39,7 +39,6 @@ public class AppConfig {
         String url = System.getenv("PSQL_URL");
         String user = System.getenv("PSQL_USER");
         String password = System.getenv("PSQL_PASSWORD");
-        //Never log your credentials/secrets. Use debugger instead
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(url);
         basicDataSource.setUsername(user);
