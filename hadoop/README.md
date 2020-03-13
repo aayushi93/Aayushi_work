@@ -1,5 +1,5 @@
-#Hadoop and HIVE Project
-##Table of contents
+# Hadoop and HIVE Project
+## Table of contents
 - [Introduction](#introduction)
 - [Hadoop Cluster](#hadoop cluster)
 	- [Framework](#framework)
@@ -9,37 +9,37 @@
 - [Hive Project](#hive project)
 - [Improvements](#improvements)
 
-##Introduction
+## Introduction
 The purpose of this project is to thoroughly understand the concepts of processing of BigData and distributed computing. I built a big data platform utilizing Apache Hadoop and its components like HDFS, MapReduce and YARN. A Hadoop cluster is provisioned on Google Cloud Platform(GCP) with 1 master node and 2 worker nodes. These nodes are managed by YARN. HIVE is used to read and write from HDFS by connecting to HIVE server via CLI(beeline) through SSH or Zeppelin Notebook through browser. I have used Zeppelin Notebook as it can be easily imported as JSON file.
 I have used World Development Indicators(WDI) data set available on Google BigQuery. 
 This dataset being very large in size with 21,759,408 rows and 2.21 GB storage size makes it challenging to perform queries efficiently using conventional methods. The whole objective is to analyze and optimize the data to increase HiveQL queries performance.
 
-##Hadoop Cluster
+## Hadoop Cluster
 
-###Cluster Architecture Diagram
+### Cluster Architecture Diagram
 
 ![Hadoop Cluster Architecture](./Assets/Hadoop_Architecture.png)
 
-###Hadoop Framework
+### Hadoop Framework
 Apache Hadoop is an open source framework written in Java. It allows distributed processing of massive amounts of data across multiple clusters of computers. The Hadoop Framework application provides a software framework for distributed storage and processing using MapReduce programming model. The storage part of Hadoop is known as Hadoop Distributed File System (HDFS). In 2010, YARN was introduced that manages computing resources in clusters and utilizing them for scheduling users application. 
 
-###HDFS
+### HDFS
 HDFS is a filesystem designed for storing very large files with streaming data access patterns that run on clustersw of commodity hardware. It is built around the idea that most efficient data processing pattern is write-once and read-many times pattern. HDFS cluster has two types of nodes operating in a master-slave pattern, as follows:
 - __NameNode__: Also known as Master node. The namenode manages the filesystem namespace. It maintains the filesystem tree and the metadata for all the files and directories in the tree. The name node also knows the datanodes on which all the blocks for a given file are located.
 - __DataNode__: Also known as worker node. These are workhorses of the filesystem. They store and retrieve blocks when the are told to do so by the namenode. The report back to the namenode periodically, with list of blocks they are storing.
 	
-###MapReduce
+### MapReduce
 MapReduce is a programming model that allows developers to process large amount of data. MapReduce job processes data in 3 phases: The Mapping phase, The Shuffle phase and the reduce phase. 
 - __The Map Phase__:  This phase consists of mappers that are user defined functions. It takes a part of data and applies business logic to it. The input data is converted into key-value pairs based on the mappers. This part is performed by data nodes. 
 - __The Shuffle Phase__:  In this phase, the data is passed to the Reducers from the mappers. 
 - __The Reduce Phase__:  In this phase, data is received from the mappers. Aggregation, filtering, sorting or combination of operations are applied on the data based on the requirements. The output of this reducer that is located at the namenode will be the final result.
 	
-###YARN
+### YARN
 Apache YARN (Yet Another Resource Negotiator) is Hadoops cluster resource management system. It was introduced to improve MapReduce implementation and support other distributed computing paradigms as well. YARN provides its core services via two long-running daemons: The Resource Manager and The Node Managers. 
 - __The Resource Manager__:  Each cluster has one resource manager to manage the use of resources across the cluster and assign resources to different jobs. Resource manager runs on master node and keeps track of workers location and their hardware usage.
 - __Node Manager__:  It runs on all the worker nodes in the cluster to launch and monitor containers. It gathers the hardware usage information and send it to resource manager. 
 
-###HIVE
+### HIVE
 Apache Hive is a framework for data warehousing on top of Hadoop. It facilitates reading, writing, and managing large datasets residing in the distributed storage using SQL. Hive provides easy access to data via SQL, enabling data warehousing tasks such as Extract-Transform-Load (ETL), reporting and data analysis. HIVE has 2 components: Hcatalog and WebHCat.
 - __Hcatalog__:  Hcatalog is a table and storage management layer for Hadoop that enables users with different data processing tools  including Pig and MapReduce to more easily read and write data on the grid.
 - __WebHCat__:  WebHCat provides a service that a user canuse to run Hadoop MapReduce (or YARN), Pig, Hive jobs. Using this, one can also perform Hive metadata operations using an HTTP (REST style) interface.
@@ -51,15 +51,15 @@ Using Beeline CLI, it is difficult to manage, execute and present large number o
 
 
 
-##Hardware Specifications	
+## Hardware Specifications	
 Hadoop cluster containing 1 master node and 2 worker nodes is created. Each node has 2 cores of 13 GB each and disk space of 100 GB is assigned.
 
 
-##Hive Project
+## Hive Project
 We have used WORLD DEVELOPMENT INDEX dataset which is dated from 1960 TO 2016. It is available on Google BigQuery and occupies 2.21GB storage space with 21,759,408 rows. 
 The Hive project introduces us how to the execution of Hive queries and Zeppelin notebook and its features. 
 
-###Introduction to Hive Project
+### Introduction to Hive Project
 We can divide Hive project in various parts as follows:
 1. Loading data into HDFS
 2. Perform Query optimizations.
