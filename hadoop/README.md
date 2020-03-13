@@ -1,17 +1,17 @@
 # Hadoop and HIVE Project
 ## Table of contents
 - [Introduction](#introduction)
-- [Hadoop Cluster](#hadoop cluster)
-	- [Cluster Architecture Diagram](#clusterarchitecturediagram)
-	- [Hadoop Framework](#hadoopframework)
+- [Hadoop Cluster](#hadoop-cluster)
+	- [Cluster Architecture Diagram](#cluster-architecture-diagram)
+	- [Hadoop Framework](#hadoop-framework)
 	- [HDFS](#hdfs)
-	- [MapReduce](#mapreduce)
+	- [MapReduce](#map-reduce)
 	- [YARN](#yarn)
 	- [HIVE](#hive)
-- [Hardware Specifications](#hardwarespecifications)
-- [Hive Project](#hiveproject)
-	- [Introduction to Hive Project](#introductiontohiveproject)
-	- [Zeppelin Notebook](#zeppelinnotebook)
+- [Hardware Specifications](#hardware-specifications)
+- [Hive Project](#hive-project)
+	- [Introduction to Hive Project](#introduction-to-hiveproject)
+	- [Zeppelin Notebook](#zeppelin-notebook)
 - [Improvements](#improvements)
 
 ## Introduction
