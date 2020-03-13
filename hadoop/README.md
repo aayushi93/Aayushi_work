@@ -2,11 +2,16 @@
 ## Table of contents
 - [Introduction](#introduction)
 - [Hadoop Cluster](#hadoop cluster)
-	- [Framework](#framework)
+	- [Cluster Architecture Diagram](#clusterarchitecturediagram)
+	- [Hadoop Framework](#hadoopframework)
 	- [HDFS](#hdfs)
 	- [MapReduce](#mapreduce)
 	- [YARN](#yarn)
-- [Hive Project](#hive project)
+	- [HIVE](#hive)
+- [Hardware Specifications](#hardwarespecifications)
+- [Hive Project](#hiveproject)
+	- [Introduction to Hive Project](#introductiontohiveproject)
+	- [Zeppelin Notebook](#zeppelinnotebook)
 - [Improvements](#improvements)
 
 ## Introduction
@@ -68,13 +73,13 @@ We can divide Hive project in various parts as follows:
 5. Partitioning tables into related parts based on the values of columns.
 6. Performance comparison between SparkQL and HiveQL.
 	 
-###Zeppelin Notebook
+### Zeppelin Notebook
 Below is the screenshot of Zeppelin Notebook explaining tasks likes Reading data from Google BigQuery, copying data between tables, loading data into HDFS, creating partitions and comparing for efficiency and various other performance comparisions.
 
 ![Zeppelin Notebook Screenshot](./Assets/Zeppelin_Hive.png)
 
 
-##Improvements
+## Improvements
 * While comparing SparkSQL and HiveQL, we have noticed that SparkSQL has better performance than HiveQL and faster query execution. Hence, exploring Spark for large datasets can improve our performance.
 * We can add more worker nodes for better performance.
 * We can also consider using bucketing where Hive partitions are further subdivided into buckets, which gives the fine structure to Hive tables while performing queries on large datasets. It also helps user to maintain parts that are more manageable. User can set the size of buckets.
