@@ -38,15 +38,22 @@ MapReduce is a programming model that allows developers to process large amount 
 - __The Map Phase__:  This phase consists of mappers that are user defined functions. It takes a part of data and applies business logic to it. The input data is converted into key-value pairs based on the mappers. This part is performed by data nodes. 
 - __The Shuffle Phase__:  In this phase, the data is passed to the Reducers from the mappers. 
 - __The Reduce Phase__:  In this phase, data is received from the mappers. Aggregation, filtering, sorting or combination of operations are applied on the data based on the requirements. The output of this reducer that is located at the namenode will be the final result.
-	
+
+_Note: Some jobs do not perform Reduce phase, like the ones where only map-side filtering is required._
 ### YARN
-Apache YARN (Yet Another Resource Negotiator) is Hadoops cluster resource management system. It was introduced to improve MapReduce implementation and support other distributed computing paradigms as well. YARN provides its core services via two long-running daemons: The Resource Manager and The Node Managers. 
-- __The Resource Manager__:  Each cluster has one resource manager to manage the use of resources across the cluster and assign resources to different jobs. Resource manager runs on master node and keeps track of workers location and their hardware usage.
+Apache YARN (Yet Another Resource Negotiator) is Hadoops cluster resource management system. It was introduced to improve MapReduce implementation and support other distributed computing paradigms as well. 
+YARN provides its core services via two long-running daemons: The Resource Manager and The Node Managers. 
+- __The Resource Manager__:  Each cluster has one resource manager to manage the use of resources across the cluster and assign resources to different jobs. Resource manager runs on master node and keeps track of workers location and their hardware usage. 
 - __Node Manager__:  It runs on all the worker nodes in the cluster to launch and monitor containers. It gathers the hardware usage information and send it to resource manager. 
 
+#### Node Health Check
+The node manager runs services to determine the health of the node it is executing on. It performs checks on the disk as well as on user specified tests . If any health checks fails, the Node Manager marks the node unhealthy and communicates this to the Resource Manager. Resource Manager, in turn, stops assigning containers to unhealthy nodes. Communication of the node status is done as the part of heartbeat between the Node Manager and the Resource Manager. When the heartbeat takes place, the status of both checks is used to determine the health of the node.
+
+_Note: Since resource manager is the single point of failure in YARN, Application Masters come into picture. __The Application Master__ is responsible for the execution of single application. It asks for containers from the Resource Manager and executes specific programs on the obtained containers. The Application Master knows the application logic and thus it is framework-specific. For example, the MapReduce framework provides its own implementation of an Application Master. So using Application Master, YARN is spreading the metadata related to the running applications over the cluster. This reduces load on Resource manager and make it fast recoverable._
 ### HIVE
 Apache Hive is a framework for data warehousing on top of Hadoop. It facilitates reading, writing, and managing large datasets residing in the distributed storage using SQL. Hive provides easy access to data via SQL, enabling data warehousing tasks such as Extract-Transform-Load (ETL), reporting and data analysis. HIVE has 2 components: Hcatalog and WebHCat.
-- __Hcatalog__:  Hcatalog is a table and storage management layer for Hadoop that enables users with different data processing tools  including Pig and MapReduce to more easily read and write data on the grid.
+- __Hcatalog__:  Hcatalog is a table and storage management layer for Hadoop that enables users with different data processing tools including Pig and MapReduce to more easily read and write data on the grid. HCatalog also maintains the cache of HiveClients to talk to metastore. This cache behaviour can be modified using few parameters as follows: `hcatalog.hive.client.cache.expiry.time` that allows user to specify the number of seconds until a cache entry expires.
+`hcatalog.hive.client.cache.disabled` allows user to disable cache altogether.
 - __WebHCat__:  WebHCat provides a service that a user canuse to run Hadoop MapReduce (or YARN), Pig, Hive jobs. Using this, one can also perform Hive metadata operations using an HTTP (REST style) interface.
 - __Beeline CLI__:  Beeline is one of the ways to connect to Hive through CLI. It is installed alongwith Hive. To establish a Hive connection, enter the following command on the command prompt - beeline -u "jdbc:hive2://jarvis-bootcamp-m:10000" . We can start using Hive, once the connection is established. 
 - __Zeppelin Notebook__:  Zeppelin Notebooks provide an easy way to execute code in a wb notebook. Zeppelin can be used to execute scala, SQL, ssh commands and even schedule a job with cron to run at regular intervals. 
