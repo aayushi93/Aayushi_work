@@ -85,7 +85,7 @@ We can divide Hive project in various parts as follows:
 ### Zeppelin Notebook
 Below is the screenshot of Zeppelin Notebook explaining tasks likes Reading data from Google BigQuery, copying data between tables, loading data into HDFS, creating partitions and comparing for efficiency and various other performance comparisions.
 
-![Zeppelin Notebook Screenshot](./Assets/Zeppelin_Hive_Aayushi.png)
+![Zeppelin Notebook Screenshot](./Assets/ZeppelinNotebook_Aayushi.png)
 
 
 ## Improvements
